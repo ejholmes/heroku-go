@@ -626,9 +626,10 @@ func (s *Service) AppTransferUpdate(appTransferIdentity string, o struct {
 // A build represents the process of transforming a code tarball into a
 // slug
 type Build struct {
-	CreatedAt time.Time `json:"created_at"` // when build was created
-	ID        string    `json:"id"`         // unique identifier of build
-	Slug      *struct {
+	CreatedAt       time.Time `json:"created_at"` // when build was created
+	ID              string    `json:"id"`         // unique identifier of build
+	OutputStreamURL string    `json:"output_stream_url"`
+	Slug            *struct {
 		ID string `json:"id"` // unique identifier of slug
 	} `json:"slug"` // slug created by this build
 	SourceBlob struct {
@@ -1731,4 +1732,3 @@ func (s *Service) StackList(lr *ListRange) ([]*Stack, error) {
 	var stackList []*Stack
 	return stackList, s.Get(&stackList, fmt.Sprintf("/stacks"), lr)
 }
-
